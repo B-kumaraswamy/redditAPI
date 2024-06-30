@@ -1,3 +1,5 @@
+
+/* receives encoded data and returns as plain text */
 export function decodeHtmlEntities(str) {
   if (typeof str !== 'string' || str.length === 0) {
     return '';

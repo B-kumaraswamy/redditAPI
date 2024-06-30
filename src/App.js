@@ -6,23 +6,25 @@ import BlogPost from './components/blogpost';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 function App() {
-  const [blogPostData, setBlogPostData] = useState([]);
+  const [blogPostData, setBlogPostData] = useState([]); 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
+
+  /* onHittingApi function -- fetches data from reddit API and 
+  updates the blogPostData state. */
   useEffect(() => {
     const onHittingApi = async () => {
       try {
         const url = "https://www.reddit.com/r/reactjs.json";
         const response = await axios.get(url);
         console.log("response", response.data);
-        let res1 = response.data["data"]["children"]
+       
+
         if (response.data) {
           let postsData = [];
           const children = response.data["data"]["children"]
-          console.log("verifying", res1 === children)
-          console.log("length", children.length)
 
           for (let i = 0;  i < children.length; i++) {
             const childData = children[i].data;
@@ -58,6 +60,8 @@ function App() {
     onHittingApi();
   }, []);
 
+
+  /* Sets the theme for the project */
 useEffect(() => {
   const currentTheme = localStorage.getItem("theme")
   if(currentTheme) {
@@ -65,6 +69,8 @@ useEffect(() => {
   }
 }, [])
 
+/* on hitting toggleTheme function, toggles between dark and light mode, 
+stores the mode to localStorage */ 
   const toggleTheme = () => {
     setIsDarkMode((prevMode) => {
       const newMode = !prevMode 
@@ -73,14 +79,12 @@ useEffect(() => {
     })
   }
 
+  /* activates darkMode css when darkMode is activated/true */ 
   useEffect(() => {
     document.body.className = isDarkMode ? 'dark-mode' : '';
   }, [isDarkMode]);
 
-  useEffect(() => {
-    console.log("updated state", blogPostData)
-  }, [blogPostData])
-
+/* renders blogPostData state after checking errors and fetching data*/ 
   return (
     <div>
       <h1 className='heading'>Reddit API data</h1>
