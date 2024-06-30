@@ -31,9 +31,7 @@ const BlogPost = ({ title, selfTextHtml, url, score }) => {
 
   }, [characters])
 
-
-
-
+  
   return (
    <div className='blog-container'>
    
