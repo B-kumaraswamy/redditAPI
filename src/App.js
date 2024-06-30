@@ -1,14 +1,15 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-import './App.css';
+import './components/blogpost.css';
 import BlogPost from './components/blogpost';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 function App() {
   const [blogPostData, setBlogPostData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const onHittingApi = async () => {
@@ -76,18 +77,32 @@ function App() {
     onHittingApi();
   }, []);
 
+  
+  const toggleTheme = () => {
+    setIsDarkMode(prevMode => !prevMode);
+  };
 
-
+  useEffect(() => {
+    document.body.className = isDarkMode ? 'dark-mode' : '';
+  }, [isDarkMode]);
 
   useEffect(() => {
     //console.log("updated state", blogPostData)
   }, [blogPostData])
 
   return (
-   
-      <div>
+    <div>
+      <h1>Reddit API data</h1>
+      <div className="theme-toggle-container">
+        <button onClick={toggleTheme} className="theme-toggle">
+          Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
+        </button>
+      </div>
+      <div> 
         {isLoading ? (
-          <p>Loading...</p>
+           <div className="spinner-container">
+         <ClipLoader className='clipLoader'/>
+         </div>
         ) : error ? (
           <p>Error: {error}</p>
         ) : (
@@ -102,7 +117,7 @@ function App() {
           ))
         )}
       </div>
-   
+      </div>
   );
 }
 

@@ -1,3 +1,5 @@
+
+
 // BlogPost.js
 import { decodeHtmlEntities } from './utils';
 import './blogpost.css';
@@ -34,6 +36,7 @@ const BlogPost = ({ title, selfTextHtml, url, score }) => {
 
   return (
    <div className='blog-container'>
+   
      <div className="blog-post">
       <h2>{title}</h2>
       <div dangerouslySetInnerHTML={{ __html: cleanedContent }} />
