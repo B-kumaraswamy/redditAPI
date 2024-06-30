@@ -1,5 +1,10 @@
 # Reddit Blog Posts App
 
+## Deployed Link
+
+Check out the live application here: 
+
+
 This is a React application that fetches and displays blog posts from the Reddit API. The app includes features like loading state management, error handling, dark mode toggling, and dynamic content rendering.
 
 ## Features
@@ -22,28 +27,25 @@ This is a React application that fetches and displays blog posts from the Reddit
 ## Installation
 
 1. Clone the repository:
-   bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/B-kumaraswamy/redditAPI.git
+   cd redditAPI
    
 
 2. Install the dependencies:
-   bash
    npm install
    
 
 3. Start the development server:
-   bash
    npm start
    
 
 ## Components
 
 ### App Component
-This is the main component of the application. It handles state management, data fetching, theme toggling, and rendering.
+This is the main component of the application. It handles state management, data fetching, theme toggling, localStorage and rendering.
 
 ### BlogPost Component
-This component displays individual blog post details including the title, content, URL, and score. It also features dynamic character coloring for the score.
+This component displays individual blog post details including the title, content(selfText_HTML), URL, and score. It also features dynamic character coloring for the score.
 
 ## Styles (CSS)
 The application defines styles for both light and dark modes, and ensures that the app is responsive.

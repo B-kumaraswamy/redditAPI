@@ -8,6 +8,7 @@
   --blog-post-border: #e3e3e3;
   --blog-post-shadow: rgba(0, 0, 0, 0.1);
   --link-color: #007bff;
+  --heading : #331aa3;
   
 }
 
@@ -18,7 +19,7 @@
   --blog-post-border: #444;
   --blog-post-shadow: rgba(0, 0, 0, 0.3);
   --link-color: #4bc0c0;
-   
+  --heading : #f65cbb;
 }
 
 body {
@@ -29,10 +30,7 @@ body {
   padding: 0;
 }
 
-.clipLoader {
-  color: #007bff;
-  
-}
+
 
 .spinner-container {
   display: flex;
@@ -113,13 +111,13 @@ body {
   font-weight: bold;
 }
 
-h1 {
+.heading {
   text-align: center;
   font-size: 32px;
   font-weight: bold;
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #331aa3;
+  color: var(--heading);
 }
 
 /* Toggle button styles */

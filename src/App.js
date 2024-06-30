@@ -77,10 +77,43 @@ function App() {
     onHittingApi();
   }, []);
 
-  
+  /*
   const toggleTheme = () => {
     setIsDarkMode(prevMode => !prevMode);
-  };
+  };*/
+
+  /*useEffect(() => {
+    const storedTheme = localStorage.getItem('theme');
+    console.log("storedTheme", storedTheme)
+    if (storedTheme) {
+      console.log("inside storedTheme if")
+      setIsDarkMode(storedTheme === 'dark');
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      console.log("newMode", newMode)
+      localStorage.setItem('theme', newMode ? 'dark' : 'light');
+      return newMode; //take care that toggleTheme function should return true/false
+    });
+  };*/
+
+useEffect(() => {
+  const currentTheme = localStorage.getItem("theme")
+  if(currentTheme) {
+    setIsDarkMode(currentTheme === 'dark')
+  }
+}, [])
+
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode 
+      localStorage.setItem("theme", newMode ? 'dark' : 'light')
+      return newMode
+    })
+  }
 
   useEffect(() => {
     document.body.className = isDarkMode ? 'dark-mode' : '';
@@ -92,7 +125,7 @@ function App() {
 
   return (
     <div>
-      <h1>Reddit API data</h1>
+      <h1 className='heading'>Reddit API data</h1>
       <div className="theme-toggle-container">
         <button onClick={toggleTheme} className="theme-toggle">
           Toggle {isDarkMode ? 'Light' : 'Dark'} Mode
@@ -101,7 +134,7 @@ function App() {
       <div> 
         {isLoading ? (
            <div className="spinner-container">
-         <ClipLoader className='clipLoader'/>
+         <ClipLoader color = {"#f6089b"}/>
          </div>
         ) : error ? (
           <p>Error: {error}</p>
